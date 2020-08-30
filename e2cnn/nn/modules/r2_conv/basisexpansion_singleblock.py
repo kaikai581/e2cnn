@@ -55,7 +55,8 @@ class SingleBlockBasisExpansion(BasisExpansion):
         # PyTorch 1.2 suggests using BoolTensor instead of ByteTensor for boolean indexing
         # but BoolTensor have been introduced only in PyTorch 1.2
         # Hence, for the moment we use ByteTensor
-        mask = torch.tensor(mask.astype(np.uint8))
+        ## My edit: change to bool to quiet down the warning with PyTorch 1.6.
+        mask = torch.tensor(mask.astype(np.bool))
 
         # filter out the basis elements discarder by the filter
         sampled_basis = sampled_basis[mask, ...]
